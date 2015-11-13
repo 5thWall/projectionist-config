@@ -1,7 +1,7 @@
 {
   "web/models/*.ex": {
     "type": "model"
-  }
+  },
   "web/controllers/*_controller.ex": {
     "type": "controller"
   },
