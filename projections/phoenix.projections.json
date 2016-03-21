@@ -1,21 +1,53 @@
 {
   "web/models/*.ex": {
-    "type": "model"
+    "type": "model",
+    "template": [
+      "defmodule NameOfProject.{camelcase} do",
+      "  @moduledoc \"\"\"",
+      "  \"\"\"",
+      "",
+      "  use NameOfProject.Web, :model",
+      "end"
+    ]
   },
   "web/controllers/*_controller.ex": {
-    "type": "controller"
+    "type": "controller",
+    "template": [
+      "defmodule NameOfProject.{camelcase}Controller do",
+      "  @moduledoc \"\"\"",
+      "  \"\"\"",
+      "",
+      "  use NameOfProject.Web, :controller",
+      "end"
+    ]
   },
   "web/views/*_view.ex": {
-    "type": "view"
+    "type": "view",
+    "template": [
+      "defmodule NameOfProject.{camelcase}View do",
+      "  @moduledoc \"\"\"",
+      "  \"\"\"",
+      "",
+      "  use NameOfProject.Web, :view",
+      "end"
+    ]
   },
   "web/templates/*.html.eex": {
     "type": "template"
   },
   "web/channels/*_channel.ex": {
-    "type": "channel",
+    "type": "channel"
   },
   "web/channels/*_socket.ex": {
     "type": "socket",
+    "template": [
+      "defmodule NameOfProject.{camelcase}Socket do",
+      "  @moduledoc \"\"\"",
+      "  \"\"\"",
+      "",
+      "  use Phoenix.Socket",
+      "end"
+    ]
   },
   "web/router.ex": {
     "type": "router"
