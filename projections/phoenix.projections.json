@@ -8,7 +8,7 @@
   "web/views/*_view.ex": {
     "type": "view"
   },
-  "web/templates/**/*.html.eex": {
+  "web/templates/*.html.eex": {
     "type": "template"
   },
   "web/channels/*_channel.ex": {
