@@ -1,0 +1,57 @@
+{
+  "lib/dogma/rule/*.ex": {
+    "type": "rule",
+    "alternate": "test/dogma/rule/{}_test.exs",
+    "template": [
+      "defmodule Dogma.Rule.{camelcase|dot} do",
+      "  @moduledoc \"\"\"",
+      "  \"\"\"",
+      "",
+      "  @behaviour Dogma.Rule",
+      "  alias Dogma.Script",
+      "  alias Dogma.Error",
+      "end"
+    ]
+  },
+  "lib/*.ex": {
+    "type": "lib",
+    "alternate": "test/{}_test.exs",
+    "template": [
+      "defmodule {camelcase|dot} do",
+      "  @moduledoc \"\"\"",
+      "  \"\"\"",
+      "end"
+    ]
+  },
+  "test/dogma/rule/*_test.exs": {
+    "type": "ruletest",
+    "alternate": "lib/dogma/rule/{}.ex",
+    "template": [
+      "defmodule Dogma.Rule.{camelcase|dot}Test do",
+      "  use ShouldI",
+      "",
+      "  alias Dogma.Rule.{camelcase|dot}",
+      "  alias Dogma.Script",
+      "  alias Dogma.Error",
+      "",
+      "  defp apply_rule(script) do",
+      "    script",
+      "    |> Script.parse(\"foo.ex\")",
+      "    |> {camelcase|dot}.test",
+      "  end",
+      "end"
+    ]
+  },
+  "test/*_test.exs": {
+    "type": "test",
+    "alternate": "lib/{}.ex",
+    "template": [
+      "defmodule {camelcase|dot}Test do",
+      "  use ShouldI",
+      "end"
+    ]
+  },
+  "*": {
+    "make": "mix"
+  }
+}
