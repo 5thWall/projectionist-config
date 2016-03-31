@@ -36,7 +36,19 @@
     "type": "template"
   },
   "web/channels/*_channel.ex": {
-    "type": "channel"
+    "type": "channel",
+    "template": [
+      "defmodule NameOfProject.{camelcase}Channel do",
+      "  @moduledoc \"\"\"",
+      "  \"\"\"",
+      "",
+      "  use NameOfProject.Web, :channel",
+      "",
+      "  def join(\"{plural}:\" <> subtopic, _parms, socket) do",
+      "    {open}:ok, assigns(socket, :subtopic, subtopic){close}",
+      "  end",
+      "end"
+    ]
   },
   "web/channels/*_socket.ex": {
     "type": "socket",
@@ -46,10 +58,43 @@
       "  \"\"\"",
       "",
       "  use Phoenix.Socket",
+      "",
+      "  ## Channels",
+      "  channel \"{plural}:*\", NameOfProject.{camelcase}Channel",
+      "",
+      "  ## Transports",
+      "  transport :websocket, Phoenix.Transports.WebSocket",
+      "  # transport :longpoll, Phoenix.Transports.LongPoll",
+      "",
+      "  def connect(_params, socket) do",
+      "    {:ok, socket}",
+      "  end",
+      "",
+      "  def id(_socket), do: nil",
       "end"
     ]
   },
   "web/router.ex": {
     "type": "router"
+  },
+  "web/web.ex": {
+    "type": "web"
+  },
+  "priv/repo/migrations/*.exs": {
+    "type": "migration"
+  },
+  "priv/repo/seeds.exs": {
+    "type": "seed"
+  },
+  "web/static/js/*.js": {
+    "type": "js",
+    "template": [
+      "let {capitalize} = {open}",
+      "{close}",
+      "export default {capitalize}"
+    ]
+  },
+  "web/static/css/*.css": {
+    "type": "css"
   }
 }
