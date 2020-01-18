@@ -1,0 +1,23 @@
+{
+    "docs/*.md": { "type": "doc"},
+    "README.md": { "type": "readme"},
+    ".projections.json": { "type": "project"},
+
+    "src/*.py": {
+        "alternate":
+        [ "src/tests/{dirname}/test_{basename}.py"],
+            "type": "source",
+            "dispatch": "python {file}"
+    },
+
+    "src/tests/**/test_*.py": {
+        "alternate":
+        [ "src/{}.py"],
+        "template": [
+        "import {dot}",
+        "",
+        "" ],
+            "type": "test",
+            "dispatch": "pytest {file}"
+    }
+}
